@@ -19,12 +19,12 @@ divCatInfo.classList.add('is-hidden');
 let arrBreedsId = [];
 fetchBreeds()
 .then(data => {
-    data.forEach(element => {
-        arrBreedsId.push({text: element.name, value: element.id});
-    });
+       selector.innerHTML = data.map(item => {
+        return `<option value="${item.id}">${item.name}</option>`
+    }).join('');
+
     new SlimSelect({
         select: selector,
-        data: arrBreedsId
     });
     })
 .catch(onFetchError);
